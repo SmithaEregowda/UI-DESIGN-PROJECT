@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>donate</title>
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        h1 {
+            background-color: rgb(255, 0, 0);
+            color: white;
+            text-align: center;
+            font-size: 35px;
+            margin-top: -10px;
+            margin-left: -10px;
+            margin-right: -10px;
+            padding: 10px;
+            opacity: 80%;
+        }
+
+        body {
+            background-image: url(dbgd.jpg);
+            background-size: cover;
+        }
+
+        .black {
+            font-size: 40px;
+
+        }
+
+        .red {
+            font-size: 40px;
+            color: red;
+        }
+
+        #container {
+            margin-left: 600px;
+            margin-top: 200px;
+        }
+
+        #donate {
+            margin-left: 50px;
+            width: 200px;
+            background-color: red;
+            padding: 10px;
+            color: white;
+            animation-name: donor;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes donor {
+            0% {
+                transform: scale(0.9);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+        }
+        .boxes{
+           width: 300px;
+        }
+        #donateform{
+            margin-left: 600px;
+            margin-top: 200px;
+            background-color: white;
+            margin-right: 500px;
+           text-align: center;
+        }
+        #submit{
+            background-color: black;
+            color: white;
+        }
+       .fa-user,.fa-phone,.fa-money,.fa-credit-card-alt,.fa-paypal,.fa-sort-numeric-desc,.fa-male,.fa-female{
+           color: red;
+           font-size: 20px;
+       } 
+      
+    </style>
+</head>
+
+<body>
+    <h1>DONATE NOW</h1><br>
+    <div id="container">
+        <span class="black"><b>YES, I WILL HELP TO</b> <br><b>STOP</b></span>
+        <span class="red"><b> CHILD<br>EXPOLITATION</b></span><br><br><br><br><br><br>
+        <a href="#donateform">
+            <button id="donate">DONATE</button>
+        </a>
+        <br><br><br><br><br><br>
+    
+    <br><br><br><br><br><br><br><br><br><br>
+    
+    </div>
+    <div id="donateform">
+        <form>
+            <table>
+                <th colspan="2"><span class="black"><b>I WOULD LIKE TO</b><br></span>
+                    <span class="red"><b>DONATE</b></span><hr></th>
+                   
+                <tr>
+                    
+                    <td><br><br><i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" id="name" onkeyup="nameValid()" class="boxes"
+                         placeholder="Enter your name"><br>
+                        <span style="color: red;" id="nameErr"></span>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td><br><br><br><i class="fa fa-phone" aria-hidden="true"></i>
+                        <input type="text" id="number" onkeyup="MobileValid()"  class="boxes" maxlength="10" 
+                        placeholder="Enter your number"><br>
+                        <span style="color: red;" id="numberErr"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><br><br><br><br><i class="fa fa-male" aria-hidden="true"></i>
+                        <input type="radio" name="gender" id="male" onchange="genderValid()">male
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        <input type="radio" name="gender" id="female" onchange="genderValid()">female<br>
+                        <span style="color: red;" id="genderErr"></span>
+                    </td>
+                </tr>
+                
+                <tr>
+                <td><br><br><i class="fa fa-money" aria-hidden="true"></i>
+                    <input type="text" id="amount" onkeyup="amountValid()"  class="boxes" maxlength="10" 
+                    placeholder="Enter amount you wish to pay"><br>
+                    <span style="color: red;" id="amtErr"></span>
+                </td>
+                </tr>
+                <tr>
+                    <td><br><br><i class="fa fa-credit-card-alt" ></i>
+                        
+                        <input type="radio" name="pay" id="credit" onchange="creditValid()">creditcard
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-paypal" ></i>
+                        <input type="radio" name="pay" id="phonepe" onchange="creditValid()">phonepe<br>
+                        <span style="color: red;" id="payErr"></span>
+                    </td>
+                </tr>
+              <tr>
+                <td><br><br><i></i><i class="fa fa-sort-numeric-desc" ></i>
+                    <input type="text" id="pinum" onkeyup="pinnumValid()"  class="boxes" maxlength="10" 
+                    placeholder="Enter  you cardnumber"><br>
+                    <span style="color: red;" id="pinErr"></span>
+                </td> 
+              </tr>
+                <tr>
+                    <td colspan="2"><br><br>
+                       <input type="submit" value="DONATE" id="submit">
+                </tr>
+            </table>
+        </form>
+        <br>
+       
+       
+           
+    </div>
+    <script>
+
+           
+        function MobileValid() {
+            var mobileNumber = document.getElementById("number");
+            mobileNumber.value = mobileNumber.value.replace(/[^0-9\.]/g, '');
+            document.getElementById("numberErr").innerHTML = " ";
+        }
+        function amountValid(){
+            document.getElementById("amtErr").innerHTML=" ";
+        }
+        function pinnumValid(){
+            document.getElementById("pinErr").innerHTML=" ";
+        }
+        function creditValid(){
+            document.getElementById("payErr").innerHTML=" ";
+        }
+        function genderValid(){
+             document.getElementById("genderErr").innerHTML=" ";
+        }
+       
+        document.getElementById("submit").addEventListener("click", function (event) {
+            var name = document.getElementById("name");
+            
+            if (name.value == "") {
+                document.getElementById("nameErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+            var number = document.getElementById("number");
+            if (number.value == "") {
+                document.getElementById("numberErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+            var amount = document.getElementById("amount");
+            if (amount.value == "") {
+                document.getElementById("amtErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+            var pinum = document.getElementById("pinum");
+            if (pinum.value == "") {
+                document.getElementById("pinErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+           
+            var found=false;
+            var male=document.getElementById("male");
+            var female=document.getElementById("female");
+            if(male.checked){
+                found=true;
+            }
+            else if(female.checked){
+                found=true;
+            }
+            else{
+             document.getElementById("genderErr").innerHTML = "*required";
+             event.preventDefault();
+            }
+    var valid=false;
+
+            var credit=document.getElementById("credit");
+            var phonepe=document.getElementById("phonepe");
+            if(credit.checked){
+                valid=true;
+            }
+            else if(phonepe.checked){
+                valid=true;
+            }
+            else{
+             document.getElementById("payErr").innerHTML = "*required";
+             event.preventDefault();
+            } 
+        });
+        function nameValid() {
+            document.getElementById("nameErr").innerHTML = "  ";
+        }
+       
+    </script>
+
+</body>
+
+</html>
