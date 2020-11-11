@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User registration </title>
+    <style>
+        body {
+            background-image: url(bgd4.jpg);
+            background-size: 100% 100%;
+        }
+
+
+        #submit {
+            margin-left: 100px;
+        }
+
+        table {
+            margin-left: 600px;
+            margin-top: 100px;
+            background-color: black;
+            opacity: 80%;
+            height: 100px;
+            padding: 20px;
+            box-shadow: 5px 5px grey;
+            border-spacing: 0 25px;
+            color:white;
+
+        }
+
+        #submit {
+            background-color:red;
+            margin-top: 20px;
+            margin-left: 85px;
+        }
+
+
+        a {
+            color: red;
+            text-align: center;
+        }
+
+        a:hover {
+            color: green;
+        }
+
+
+
+        .boxes {
+            width: 200px;
+            margin-top: 10px;
+            background: #f1f1f1;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <form>
+        <table>
+            <tr>
+                <th colspan="2" style="font-size: 30px;"><b>SIGN UP</b>
+                    <hr>
+                </th>
+            </tr>
+
+            <tr>
+                <td>NAME:</td>
+                <td><input type="text" id="name" name="name" onkeyup="nameValid()" class="boxes"
+                        placeholder="pet owner"><br>
+                    <span style="color: red;" id="nameErr"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile no:</td>
+                <td><input type="text" id="number" name="number" onkeyup="MobileValid()" maxlength="10" class="boxes"
+                        placeholder="mobile no"><br>
+                    <span style="color: red;" id="numberErr"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td> Gender:</td>
+                <td>
+                    <input type="radio" name="gender" value="male" id="male" onchange="genderValid()" id="male">male
+                    <input type="radio" name="gender" value="female" id="female" onchange="genderValid()"
+                        id="female">female<br>
+                    <span style="color: red;" id="genderErr"></span>
+                </td>
+            </tr>
+
+
+            <td>UserName:</td>
+            <td><input type="text" id="username" onkeyup="usernameValid()" name="username" class="boxes"
+                    placeholder="username"><br>
+                <span style="color: red;" id="usernameErr"></span>
+            </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" id="password" onkeyup="passwordValid()" name="password" class="boxes"
+                        placeholder="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="must contain atleat one
+                            lowecase and uppercase letter and atleast 8 or more chracters"><br>
+                    <span style="color: red;" id="passwordErr"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>ConfirmPassword:</td>
+                <td><input type="password" id="cnfmpassword" onkeyup="cnfmpasswordValid()" class="boxes"
+                        placeholder="confirm password"><br>
+                    <span style="color: red;" id="cnfmpasswordErr"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><input type="submit" value="REGISTER" id="submit"></td>
+            </tr>
+            <tr>
+                <td colspan="2"> Already have <a href="login.html">Login in?</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+
+
+    <script>
+
+
+        function MobileValid() {
+            var mobileNumber = document.getElementById("number");
+            mobileNumber.value = mobileNumber.value.replace(/[^0-9\.]/g, '');
+            document.getElementById("numberErr").innerHTML = " ";
+        }
+        function genderValid() {
+            document.getElementById("genderErr").innerHTML = " ";
+        }
+
+        document.getElementById("submit").addEventListener("click", function (event) {
+            var name = document.getElementById("name");
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+            if (name.value == "") {
+                document.getElementById("nameErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+            var number = document.getElementById("number");
+            if (number.value == "") {
+                document.getElementById("numberErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+
+            if (username.value == "") {
+                document.getElementById("usernameErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+            if (password.value == "") {
+                document.getElementById("passwordErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+            var confirmPassword = document.getElementById("cnfmpassword");
+            if (confirmPassword.value == password.value) {
+                document.getElementById("cnfmpasswordErr").innerHTML = " ";
+            }
+            else {
+                document.getElementById("cnfmpasswordErr").innerHTML = "*confirm password correctly";
+                event.preventDefault();
+            }
+            var found = false;
+            var male = document.getElementById("male");
+            var female = document.getElementById("female");
+            if (male.checked) {
+                found = true;
+            }
+            else if (female.checked) {
+                found = true;
+            }
+            else {
+                document.getElementById("genderErr").innerHTML = "*required";
+                event.preventDefault();
+            }
+
+        });
+        function nameValid() {
+            document.getElementById("nameErr").innerHTML = "  ";
+        }
+
+        function usernameValid() {
+            document.getElementById("usernameErr").innerHTML = "  ";
+        }
+        function passwordValid() {
+            document.getElementById("passwordErr").innerHTML = "  ";
+        }
+        function cnfmpasswordValid() {
+            document.getElementById("cnfmpasswordErr").innerHTML = " ";
+        }
+    </script>
+</body>
+</htm>
